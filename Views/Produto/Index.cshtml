@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProdutoModel>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1>Produtos </h1>
+
+        <a class="btn btn-success mx-2" asp-controller="Produto" asp-action="Cadastrar">Cadastrar novo Produto</a>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome do Produto</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Disponivel</th>
+                <th scope="col">Última Atualização</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (Model != null)
+            {
+
+                @foreach (var produto in Model)
+                {
+                    <tr>
+                        <th scope="row">@produto.Id</th>
+                        <td>@produto.Nome</td>
+                        <td>@produto.Descricao</td>
+                        <td>R$ @produto.Valor.ToString("0.00")</td>
+                        <td>@(produto.Disponivel ? "Sim" : "Não")</td>
+                        <td>@produto.Data</td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+</div>

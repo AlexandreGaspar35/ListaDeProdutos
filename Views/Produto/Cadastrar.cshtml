@@ -1,0 +1,65 @@
+﻿@model ProdutoModel
+
+@{
+    ViewData["title"] = "Cadastrar Produto";
+}
+
+<div class="container bg-dark p-5 rounded-5">
+    
+        
+            <div class="text-center mb-5">
+                <h2 class="text-light">Cadastro de Produto</h2>
+            </div>
+
+
+    <form method="post" asp-controller="Produto" asp-action="Cadastrar">
+
+        <div class="mb-3">
+            <label asp-for="Nome" class="form-label text-light">Nome do Produto:</label>
+            <input asp-for="Nome" type="text" class="form-control" id="Nome" placeholder="Nome do Produto">
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Descricao" class="form-label text-light">Descrição</label>
+            <input asp-for="Descricao" type="text" class="form-control" id="Descricao" placeholder="Descrição do Produto">
+            <span class="text-danger" asp-validation-for="Descricao"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label asp-for="Valor" class="form-label text-light">Valor do Produto (BRL)</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">R$</span>
+                    <input asp-for="Valor" type="text" id="money" class="form-control" placeholder="0,00">
+                    <span class="text-danger" asp-validation-for="Valor"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Disponivel" class="form-label text-light">Disponivel</label>
+                <select asp-for="Disponivel" class="form-select" aria-label="Default select example">
+                    <option selected>Selecione</option>
+                    <option value="true">Disponivel</option>
+                    <option value="false">Indisponivel</option>
+                </select>
+                <span class="text-danger" asp-validation-for="Disponivel"></span>
+            </div>
+        </div>
+       
+
+        <div class="d-flex gap-5 mt-5">
+            <button type="submit" class="btn btn-success w-50">Cadastrar</button>
+            <a class="btn btn-primary w-50" asp-controller="Produto" asp-action="Index">Voltar</a>
+        </div>
+
+    </form>
+        
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#money').mask('000.000.000.000.000,00', { reverse: true });
+        });
+    </script>
+}
